@@ -1,17 +1,13 @@
-import axios from "axios";
-const token = import.meta.env.VITE_COINGECKO_API_KEY;
+import axios from 'axios';
 
+const API_URL = 'https://api.exchangerate-api.com/v4/latest/USD';
 
-export const getCryptoPrices = async (list) => {
+export const getUsdPrice = async () => {
     try {
-        const options = {
-            method: 'GET',
-            headers: { accept: 'application/json', 'x-cg-demo-api-key': token }
-        };
-        const response = await axios.get(`https://api.coingecko.com/api/v3/simple/price?ids=${list}&vs_currencies=usd`, options);
-        return response.data;
-
+        const response = await axios.get(API_URL);
+        return response.data.rates.TRY; // USD/TRY kuru
     } catch (error) {
-        return error;
+        console.error('Dolar kuru alınamadı:', error);
+        return null;
     }
-}
+};
