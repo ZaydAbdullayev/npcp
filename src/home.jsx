@@ -10,6 +10,8 @@ import birds from "./assets/birds_fly.gif";
 import cash from "./assets/cash.gif";
 import music from "./assets/bg_music.mp3";
 
+const env = window.ENV || { TITLE: "$NPCP Friends", X_LINK: "#", WALLET: "#" };
+
 export const App = () => {
   const cardsRef = useRef([]);
   const exchangeRate = 50; // 1 USD = 50 NPCP
@@ -76,13 +78,13 @@ export const App = () => {
   return (
     <div className="wrapper">
       <nav className="navbar">
-        <h3>$NPCP Friends</h3>
+        <h3>{env.TITLE}</h3>
         <div className="navbar-menu">
           <button
             className="connect"
             onClick={() =>
               window.open(
-                "https://phantom.com/learn/crypto-101/what-is-a-crypto-wallet#how-do-crypto-wallets-work",
+                env.WALLET,
                 "_blank"
               )
             }
@@ -105,7 +107,7 @@ export const App = () => {
             className="connect"
             onClick={() =>
               window.open(
-                "https://phantom.com/learn/crypto-101/what-is-a-crypto-wallet#how-do-crypto-wallets-work",
+                env.WALLET,
                 "_blank"
               )
             }
